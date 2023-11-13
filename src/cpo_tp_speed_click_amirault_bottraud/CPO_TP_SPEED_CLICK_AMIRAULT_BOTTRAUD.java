@@ -14,7 +14,8 @@ public class CPO_TP_SPEED_CLICK_AMIRAULT_BOTTRAUD {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        int j ;
+        int i;
     }
     
 }
