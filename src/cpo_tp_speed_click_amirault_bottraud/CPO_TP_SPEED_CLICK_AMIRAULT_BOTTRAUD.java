@@ -16,6 +16,7 @@ public class CPO_TP_SPEED_CLICK_AMIRAULT_BOTTRAUD {
     public static void main(String[] args) {
         int j ;
         int i;
+        Partie partie = new Partie();
     }
     
 }
