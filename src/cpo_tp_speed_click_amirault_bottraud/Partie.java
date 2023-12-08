@@ -16,7 +16,7 @@ public class Partie {
     int difficulte;// nb de coups 
     Scanner scanner;
     String niveau;
-    int timer = 10; 
+    int timer = 10; // compte à rebours 
     boolean victoire;
 
     public Partie() {
@@ -34,12 +34,14 @@ public class Partie {
                 difficulte = 50;// nb de coups
                 timer = 50;// temps 
             }
+            
             if (niveau.equalsIgnoreCase("moyen")) {
                 //grille = new GrilleDeCellules(4, 4); 
                 nbCellule = 4;// taille de la grille / matrice 
                 difficulte = 50;//nb de coups
                 timer = 25;// temps 
             }
+            
             if (niveau.equalsIgnoreCase("difficile")) {
                 nbCellule = 5;// taille de la grille / matrice  
                 difficulte = 10;//nb de coups
@@ -51,33 +53,18 @@ public class Partie {
 
         }// fin while 
 
-    }// fin public partie 
-     public void initialiserPartie() {
-        grille.EteindreToutesLesCellules(); // eteint toutes les cellules
-     }
+    } // fin public partie 
+     
     
     public void lancerPartie() {
         initialiserPartie();
-        
-        CountDownLatch countDownLatch = new CountDownLatch(timer);// Compte a rebours 
-        for (int i = timer; i > 0; i++) {
-            System.out.println("Temps restant : " + i + " secondes");
-            try {
-                Thread.sleep(1000); // Attendre 1 seconde
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        // Après le compte à rebours, vous pouvez effectuer des actions supplémentaires
-        System.out.println("Temps écoulé. Fin du compte à rebours.");
 
         for (int i = 0; i < timer; i++) {
             System.out.println(grille);
-            if (difficulte == 0) {
+            if (difficulte == 0 && timer != 0) {
                 System.out.println("C'est gagné");
                 victoire = true; 
-                break;// arret de la boucle while si toute les cellules sont allumées 
+                break;// arret de la boucle while si toutes les cellules sont allumées 
             } 
             String coup;
             System.out.println("Sur quelle ligne voulez vous desactiver la cellule ? ");
@@ -90,8 +77,11 @@ public class Partie {
                  
             }
         }
+
         //if (!victoire) {
            // System.out.println("Tu as perdu.");
-        
+        public void initialiserPartie() {
+        grille.EteindreToutesLesCellules(); // eteint toutes les cellules
+     }
     
 }// fin public class partie 

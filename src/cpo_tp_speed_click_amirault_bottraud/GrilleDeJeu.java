@@ -12,7 +12,17 @@ import java.util.Random;
  */
 public class GrilleDeJeu {
 
-    public GrilleDeJeu(int nbCellule, int nbCellule1) {
+    public GrilleDeJeu(int nbColonne, int nbLignes) {
+        this.nbLignes = nbLignes;
+        this.nbColonne = nbColonne;
+        matriceCellules = new CelluleLumineuse[nbLignes][nbColonne];// creation de la grille sous forme de tableau
+
+        // Initialisation de la grille avec des cellules éteintes
+        for (int i = 0; i < nbLignes; i++) {
+            for (int j = 0; j < nbColonne; j++) {
+                matriceCellules[i][j] = new CelluleLumineuse(false);
+            }
+        }
     }
     private CelluleLumineuse[][] matriceCellules;
     private int nbLignes;
@@ -27,6 +37,16 @@ public class GrilleDeJeu {
     }
     
     public void ActiverUneCellule(){
+        Random random = new Random();
+         // Générer des indices aléatoires pour la ligne et la colonne
+        int ligneAleatoire = random.nextInt(GrilleDeJeu.length);
+        int colonneAleatoire = random.nextInt(matriceCellules[0].length);
+
+        // Allumer la cellule aléatoire
+        matriceCellules[ligneAleatoire][colonneAleatoire];
+
+        // Afficher la grille (à titre d'exemple, vous pouvez supprimer cette partie si vous le souhaitez)
+        GrilleDeJeu(matriceCellules);
         for (int i=0; i<nbLignes ; i++){
             for (int j=0; j<nbColonne; j++){
                 matriceCellules[i][j].activerCellule();
@@ -42,20 +62,7 @@ public class GrilleDeJeu {
         }
     }
     
-    public void toggleRandomCellState() {
-    Random random = new Random();
-    int ligneClique = random.nextInt(nbLignes); // Génère un nombre aléatoire entre 0 et nbLignes - 1
-    int colonneClique = random.nextInt(nbColonne); // Génère un nombre aléatoire entre 0 et nbColonne - 1
-
-    // Activer la cellule si elle est éteinte, ou l'éteindre si elle est déjà active
-    if (ligneClique >= 0 && ligneClique < nbLignes && colonneClique >= 0 && colonneClique < nbColonne) {
-        if (matriceCellules[ligneClique][colonneClique].getEtat()) {
-            matriceCellules[ligneClique][colonneClique].eteindreCellule();
-        } else {
-            matriceCellules[ligneClique][colonneClique].activerCellule();
-        }
-    }
-}
+    
     
     
     /*public void melangerMatriceAleatoirement(int nbTours) {
