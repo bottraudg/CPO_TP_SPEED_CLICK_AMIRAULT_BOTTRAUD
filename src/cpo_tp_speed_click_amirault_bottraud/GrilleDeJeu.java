@@ -42,6 +42,21 @@ public class GrilleDeJeu {
         }
     }
     
+    public void toggleRandomCellState() {
+    Random random = new Random();
+    int ligneClique = random.nextInt(nbLignes); // Génère un nombre aléatoire entre 0 et nbLignes - 1
+    int colonneClique = random.nextInt(nbColonne); // Génère un nombre aléatoire entre 0 et nbColonne - 1
+
+    // Activer la cellule si elle est éteinte, ou l'éteindre si elle est déjà active
+    if (ligneClique >= 0 && ligneClique < nbLignes && colonneClique >= 0 && colonneClique < nbColonne) {
+        if (matriceCellules[ligneClique][colonneClique].getEtat()) {
+            matriceCellules[ligneClique][colonneClique].eteindreCellule();
+        } else {
+            matriceCellules[ligneClique][colonneClique].activerCellule();
+        }
+    }
+}
+    
     
     /*public void melangerMatriceAleatoirement(int nbTours) {
         Random random = new Random();
